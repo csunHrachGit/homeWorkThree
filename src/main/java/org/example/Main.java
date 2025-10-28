@@ -1,7 +1,34 @@
 package org.example;
+import java.util.Collection;
+import java.util.ConcurrentModificationException;
+import java.util.Iterator;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        Collection<String> testCollection = new CSArrayList<>();
+        testCollection.add("A");
+        testCollection.add("B");
+        Iterator<String> iterator = testCollection.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
+        System.out.println(testCollection.size());
+        System.out.println(testCollection.contains("B"));
+        System.out.println(((CSArrayList<String>) testCollection).indexOf("B"));
+
+        CSArrayList<String> list = new CSArrayList<>();
+        list.add("A");
+        list.add("B");
+        list.add("C");
+
+        try {
+            for (String item : list) {
+                if (item.equals("B")) {
+                    list.remove(1); // Modify the list during iteration
+                }
+            }
+        } catch (ConcurrentModificationException e) {
+            System.out.println("ConcurrentModificationException caught as expected.");
+        }
     }
 }
