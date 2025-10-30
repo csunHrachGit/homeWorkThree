@@ -1,7 +1,5 @@
 package org.example;
 
-
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.AbstractList;
@@ -39,7 +37,9 @@ public class CSArrayList<E>
         theData = (E[]) new Object[capacity];
     }
 
-
+    public int capacity() {
+        return capacity;
+    }
     /**
      * Construct an ArrayList<E> from any Collection whose elements are E or a subtype of E.
      * @param c The Collection
@@ -260,7 +260,6 @@ public class CSArrayList<E>
         modCount++;
         return true;
     }
-
 
 }
 
